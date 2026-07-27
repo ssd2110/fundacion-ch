@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fundación Hipólito Chaiña — Fundación Médica Solidaria</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --sillar:#F4EFE4;
+    --sillar-dim:#E9E1CF;
+    --volcan:#181410;
+    --volcan-soft:#241D17;
+    --vino:#8E1B24;
+    --vino-bright:#C4232B;
+    --oro:#C69A3A;
+    --line: rgba(244,239,228,0.14);
+    --line-dark: rgba(24,20,16,0.12);
+    --serif: "Fraunces", serif;
+    --sans: "Inter", sans-serif;
+    --mono: "IBM Plex Mono", monospace;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--sillar);
+    color:var(--volcan);
+    font-family:var(--sans);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  img{display:block; max-width:100%;}
+  a{color:inherit;}
+  .wrap{max-width:1180px; margin:0 auto; padding:0 32px;}
+  .eyebrow{
+    font-family:var(--mono);
+    font-size:12px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    display:flex; align-items:center; gap:10px;
+  }
+  .eyebrow::before{
+    content:"";
+    width:22px; height:1px;
+    background:currentColor;
+    display:inline-block;
+  }
+  h1,h2,h3{font-family:var(--serif); font-weight:600; line-height:1.05; letter-spacing:-.01em;}
+  .btn{
+    font-family:var(--mono);
+    font-size:12px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    display:inline-flex; align-items:center; gap:10px;
+    padding:14px 22px;
+    border:1px solid currentColor;
+    text-decoration:none;
+    transition:background .25s ease, color .25s ease;
+  }
+  .btn-solid{background:var(--vino); border-color:var(--vino); color:var(--sillar);}
+  .btn-solid:hover{background:var(--vino-bright); border-color:var(--vino-bright);}
+  .btn-ghost{color:var(--sillar); border-color:rgba(244,239,228,.5);}
+  .btn-ghost:hover{background:rgba(244,239,228,.12);}
+
+  /* NAV */
+  header{
+    position:fixed; top:0; left:0; right:0; z-index:50;
+    background:rgba(24,20,16,.72);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  nav{
+    max-width:1180px; margin:0 auto; padding:18px 32px;
+    display:flex; align-items:center; justify-content:space-between;
+    color:var(--sillar);
+  }
+  .brand{
+    font-family:var(--serif); font-weight:600; font-size:19px; letter-spacing:-.01em;
+    display:flex; align-items:baseline; gap:8px;
+  }
+  .brand span{
+    font-family:var(--mono); font-size:10px; color:var(--oro); letter-spacing:.1em;
+  }
+  .navlinks{display:flex; gap:30px; font-size:13px; font-family:var(--mono); letter-spacing:.03em;}
+  .navlinks a{text-decoration:none; opacity:.75; transition:opacity .2s;}
+  .navlinks a:hover{opacity:1;}
+  .navtoggle{display:none;}
+
+  /* HERO */
+  .hero{
+    position:relative;
+    min-height:100vh;
+    display:flex; align-items:flex-end;
+    color:var(--sillar);
+    overflow:hidden;
+  }
+  .hero-bg{
+    position:absolute; inset:0;
+    background-image:url('img/mountain.jpg');
+    background-size:cover;
+    background-position:center 30%;
+  }
+  .hero-bg::after{
+    content:"";
+    position:absolute; inset:0;
+    background:linear-gradient(180deg, rgba(24,20,16,.35) 0%, rgba(24,20,16,.55) 45%, var(--volcan) 96%);
+  }
+  .hero-inner{
+    position:relative; z-index:2;
+    width:100%;
+    padding:160px 32px 120px;
+    max-width:1180px; margin:0 auto;
+  }
+  .hero-inner .eyebrow{color:var(--oro); margin-bottom:26px;}
+  .hero h1{
+    font-size:clamp(40px, 7vw, 88px);
+    max-width:14ch;
+  }
+  .hero h1 em{
+    font-style:italic; font-weight:500; color:var(--sillar-dim);
+  }
+  .hero-sub{
+    margin-top:26px; max-width:46ch;
+    font-size:17px; color:rgba(244,239,228,.82);
+  }
+  .hero-ctas{display:flex; gap:14px; margin-top:40px; flex-wrap:wrap;}
+
+  /* WAVE DIVIDER */
+  .wave{display:block; width:100%; line-height:0;}
+  .wave svg{width:100%; height:auto; display:block;}
+
+  section{position:relative;}
+  .dark{background:var(--volcan); color:var(--sillar);}
+  .pad{padding:110px 0;}
+  .pad-sm{padding:70px 0;}
+
+  .grid-2{display:grid; grid-template-columns:0.85fr 1.15fr; gap:70px; align-items:start;}
+  .lede{
+    font-family:var(--serif); font-weight:400; font-style:italic;
+    font-size:clamp(22px,2.6vw,30px); line-height:1.35;
+    color:var(--vino);
+  }
+  .dark .lede{color:var(--oro);}
+  .body-copy{font-size:15.5px; color:rgba(24,20,16,.78); max-width:56ch;}
+  .dark .body-copy{color:rgba(244,239,228,.75);}
+
+  .stat-row{display:flex; gap:48px; margin-top:44px; flex-wrap:wrap;}
+  .stat b{
+    display:block; font-family:var(--serif); font-size:38px; color:var(--vino); line-height:1;
+  }
+  .stat span{font-family:var(--mono); font-size:11px; text-transform:uppercase; letter-spacing:.08em; color:rgba(24,20,16,.55);}
+
+  /* FOUNDER */
+  .founder{
+    display:grid; grid-template-columns:340px 1fr; gap:64px; align-items:center;
+  }
+  .founder-photo{
+    background:var(--volcan-soft);
+    padding:14px; border:1px solid var(--line);
+  }
+  .founder-photo img{width:100%; height:420px; object-fit:cover; object-position:top center;}
+  .founder-photo figcaption{
+    font-family:var(--mono); font-size:11px; letter-spacing:.05em; color:var(--oro);
+    padding-top:14px; text-transform:uppercase;
+  }
+  .founder h3{font-size:clamp(26px,3vw,34px); margin-bottom:16px;}
+
+  /* VALUES */
+  .values{display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--line-dark); margin-top:60px; border:1px solid var(--line-dark);}
+  .value-card{background:var(--sillar); padding:34px 24px; text-align:center;}
+  .value-card .n{font-family:var(--mono); font-size:11px; color:var(--vino); letter-spacing:.08em;}
+  .value-card h4{font-family:var(--serif); font-weight:600; font-size:19px; margin-top:14px;}
+
+  /* AXES */
+  .axes{display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:rgba(244,239,228,.14); margin-top:56px; border-top:1px solid var(--line); border-bottom:1px solid var(--line);}
+  .axis{padding:44px 34px; background:var(--volcan);}
+  .axis .eyebrow{color:var(--oro); margin-bottom:22px;}
+  .axis h4{font-size:24px; margin-bottom:14px;}
+  .axis p{font-size:14.5px; color:rgba(244,239,228,.72);}
+
+  /* EVENTS */
+  .events-wrap{display:grid; grid-template-columns:1fr 1fr; gap:60px;}
+  .event-list{list-style:none; margin-top:20px;}
+  .event-list li{
+    display:flex; gap:18px;
+    padding:22px 0;
+    border-bottom:1px solid var(--line-dark);
+    font-size:15.5px;
+  }
+  .dark .event-list li{border-bottom:1px solid var(--line);}
+  .event-list li::before{
+    content:"";
+    width:8px; height:8px; margin-top:7px; flex:none;
+    background:var(--vino-bright); border-radius:50%;
+  }
+  .events-photo{overflow:hidden; background:var(--volcan-soft);}
+  .events-photo img{width:100%; height:100%; object-fit:cover; min-height:340px;}
+
+  /* IMPACT */
+  .impact{
+    background:var(--vino);
+    color:var(--sillar);
+    padding:100px 0;
+    text-align:center;
+  }
+  .impact blockquote{
+    font-family:var(--serif); font-style:italic; font-weight:400;
+    font-size:clamp(24px,3.4vw,38px); max-width:900px; margin:0 auto; line-height:1.35;
+  }
+  .impact .eyebrow{justify-content:center; color:var(--sillar); opacity:.7; margin-bottom:30px;}
+
+  /* GALLERY */
+  .gallery{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:14px;
+    margin-top:56px;
+  }
+  .gallery a{overflow:hidden; display:block; background:var(--volcan-soft);}
+  .gallery img{width:100%; height:230px; object-fit:cover; transition:transform .5s ease;}
+  .gallery a:hover img{transform:scale(1.06);}
+  .gallery .tall{grid-row:span 2;}
+  .gallery .tall img{height:100%;}
+
+  /* CONTACT */
+  .contact-grid{display:grid; grid-template-columns:1fr 1fr; gap:60px;}
+  .contact-block .eyebrow{margin-bottom:22px;}
+  .contact-block h2{font-size:clamp(30px,4vw,46px); margin-bottom:20px;}
+  .contact-lines{margin-top:34px; font-family:var(--mono); font-size:13.5px; line-height:2; color:rgba(244,239,228,.75);}
+  .qr-box{
+    border:1px solid var(--line);
+    padding:28px;
+    display:flex; gap:22px; align-items:center;
+    background:var(--volcan-soft);
+  }
+  .qr-box .sq{width:64px; height:64px; background:repeating-conic-gradient(var(--sillar) 0% 25%, transparent 0% 50%) 0 0/16px 16px;}
+  .qr-box p{font-family:var(--mono); font-size:11.5px; letter-spacing:.03em; color:rgba(244,239,228,.6); text-transform:uppercase;}
+
+  footer{
+    background:var(--volcan); color:rgba(244,239,228,.5);
+    padding:34px 0; border-top:1px solid var(--line);
+    font-family:var(--mono); font-size:11px; letter-spacing:.04em; text-transform:uppercase;
+  }
+  footer .wrap{display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px;}
+
+  @media (max-width:860px){
+    .navlinks{display:none;}
+    .grid-2, .founder, .events-wrap, .contact-grid{grid-template-columns:1fr; gap:36px;}
+    .values{grid-template-columns:repeat(2,1fr);}
+    .axes{grid-template-columns:1fr;}
+    .gallery{grid-template-columns:repeat(2,1fr);}
+    .gallery .tall{grid-row:auto;}
+    .gallery .tall img{height:230px;}
+    .founder-photo img{height:320px;}
+    .pad{padding:70px 0;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <div class="brand">Hipólito Chaiña <span>FUNDACIÓN MÉDICA SOLIDARIA</span></div>
+    <div class="navlinks">
+      <a href="#quienes">Quiénes somos</a>
+      <a href="#fundador">Fundador</a>
+      <a href="#ejes">Ejes de acción</a>
+      <a href="#eventos">Eventos</a>
+      <a href="#contacto">Contacto</a>
+    </div>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-inner">
+    <div class="eyebrow">Fundación Médica Solidaria — Arequipa, Perú</div>
+    <h1>Prevenir hoy<br>para vivir <em>mejor</em> mañana.</h1>
+    <p class="hero-sub">La Fundación Hipólito Chaiña promueve el derecho a la salud y el bienestar integral de las comunidades vulnerables de Arequipa, con un enfoque humano, preventivo y comunitario.</p>
+    <div class="hero-ctas">
+      <a href="#ejes" class="btn btn-solid">Ver ejes de acción</a>
+      <a href="#contacto" class="btn btn-ghost">Contáctanos</a>
+    </div>
+  </div>
+</section>
+
+<div class="wave" style="background:var(--volcan);">
+  <svg viewBox="0 0 1200 80" preserveAspectRatio="none"><path d="M0,40 C 200,90 400,0 600,30 C 800,60 1000,10 1200,40 L1200,80 L0,80 Z" fill="#F4EFE4"/></svg>
+</div>
+
+<section id="quienes" class="pad">
+  <div class="wrap grid-2">
+    <div>
+      <div class="eyebrow" style="color:var(--vino);">Quiénes somos</div>
+      <p class="lede" style="margin-top:22px;">Una organización médica solidaria que entiende la salud como un pilar clave para el desarrollo social.</p>
+    </div>
+    <div>
+      <p class="body-copy">La Fundación Hipólito Chaiña promueve el derecho a la salud y el bienestar integral, con especial atención a comunidades vulnerables de Arequipa. Su trabajo se basa en un enfoque humano, preventivo y comunitario. La fundación actúa con ética, profesionalismo y compromiso social, brindando atención médica donde más se necesita.</p>
+      <div class="stat-row">
+        <div class="stat"><b>3</b><span>Ejes de acción</span></div>
+        <div class="stat"><b>+</b><span>Cientos de familias beneficiadas</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="fundador" class="dark pad">
+  <div class="wrap founder">
+    <figure class="founder-photo">
+      <img src="img/founder.jpg" alt="Dr. Carlos Chaiña, fundador">
+      <figcaption>Dr. Carlos Chaiña — Fundador</figcaption>
+    </figure>
+    <div>
+      <div class="eyebrow" style="color:var(--oro); margin-bottom:20px;">Nuestro fundador</div>
+      <h3>Una vocación de servicio construida en el terreno.</h3>
+      <p class="body-copy" style="margin-top:18px;">El Dr. Carlos Chaiña es médico cirujano con una sólida vocación de servicio y amplia experiencia en salud comunitaria. Es el principal impulsor de los programas de salud preventiva de la Fundación, liderando campañas médicas gratuitas, jornadas de despistaje y acciones educativas en diversos distritos de Arequipa, acercando atención médica de calidad a personas con limitado acceso al sistema de salud.</p>
+    </div>
+  </div>
+</section>
+
+<section class="pad-sm">
+  <div class="wrap" style="display:grid; grid-template-columns:1fr 1fr; gap:60px;">
+    <div style="border-top:2px solid var(--vino); padding-top:22px;">
+      <div class="eyebrow" style="color:var(--vino);">Misión</div>
+      <p class="body-copy" style="margin-top:16px;">Promover el derecho de toda persona, especialmente de la infancia y juventud, a disfrutar de una vida digna y plena, con igualdad de oportunidades y acceso a una salud digna, fortaleciendo las capacidades individuales y colectivas como medio para transformar la sociedad.</p>
+    </div>
+    <div style="border-top:2px solid var(--vino); padding-top:22px;">
+      <div class="eyebrow" style="color:var(--vino);">Visión</div>
+      <p class="body-copy" style="margin-top:16px;">Ser una fundación referente en salud solidaria y preventiva en la región Arequipa, reconocida por su impacto social, justicia social y empoderamiento de comunidades vulnerables mediante el acceso equitativo a la atención médica.</p>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <div class="values">
+      <div class="value-card"><div class="n">01</div><h4>Honestidad</h4></div>
+      <div class="value-card"><div class="n">02</div><h4>Compromiso</h4></div>
+      <div class="value-card"><div class="n">03</div><h4>Respeto</h4></div>
+      <div class="value-card"><div class="n">04</div><h4>Promoción de la Salud</h4></div>
+    </div>
+  </div>
+</section>
+
+<section id="ejes" class="dark pad">
+  <div class="wrap">
+    <div class="eyebrow" style="color:var(--oro);">Ejes de acción</div>
+    <h2 style="margin-top:20px; font-size:clamp(28px,4vw,42px); max-width:20ch;">Tres frentes, un mismo propósito.</h2>
+    <div class="axes">
+      <div class="axis">
+        <div class="eyebrow">Salud Preventiva</div>
+        <h4>Detección temprana</h4>
+        <p>Desarrollamos campañas médicas orientadas a la detección temprana de enfermedades, educación en hábitos saludables y prevención de riesgos, priorizando zonas con limitado acceso a servicios de salud.</p>
+      </div>
+      <div class="axis">
+        <div class="eyebrow">Atención Médica Solidaria</div>
+        <h4>Jornadas gratuitas</h4>
+        <p>Realizamos jornadas de atención gratuita que incluyen consultas médicas, despistajes, orientación y derivaciones oportunas.</p>
+      </div>
+      <div class="axis">
+        <div class="eyebrow">Educación y Sensibilización</div>
+        <h4>Comunidad informada</h4>
+        <p>Promovemos charlas, talleres y actividades educativas sobre prevención, autocuidado y salud comunitaria.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="eventos" class="pad">
+  <div class="wrap events-wrap">
+    <div>
+      <div class="eyebrow" style="color:var(--vino);">Principales eventos</div>
+      <h2 style="margin-top:20px; font-size:clamp(28px,3.6vw,38px);">Salud preventiva en acción</h2>
+      <ul class="event-list">
+        <li>Campañas de despistaje de enfermedades crónicas.</li>
+        <li>Jornadas de atención médica integral en comunidades vulnerables.</li>
+        <li>Actividades de prevención y promoción de la salud infantil.</li>
+        <li>Acciones médicas solidarias en zonas rurales y urbano-marginales.</li>
+      </ul>
+    </div>
+    <div class="events-photo">
+      <img src="img/despistaje.jpg" alt="Jornada de despistaje de la Fundación Hipólito Chaiña">
+    </div>
+  </div>
+</section>
+
+<div class="wave" style="background:var(--vino); transform:rotate(180deg);">
+  <svg viewBox="0 0 1200 80" preserveAspectRatio="none"><path d="M0,40 C 200,90 400,0 600,30 C 800,60 1000,10 1200,40 L1200,80 L0,80 Z" fill="#F4EFE4"/></svg>
+</div>
+
+<section class="impact">
+  <div class="wrap">
+    <div class="eyebrow">Impacto social</div>
+    <blockquote>“Nuestro trabajo ha beneficiado a cientos de familias, fortaleciendo la cultura de la prevención, mejorando el acceso a servicios médicos y contribuyendo a una sociedad más justa y saludable en Arequipa.”</blockquote>
+  </div>
+</section>
+
+<section class="dark pad">
+  <div class="wrap">
+    <div class="eyebrow" style="color:var(--oro);">Galería</div>
+    <h2 style="margin-top:20px; font-size:clamp(28px,3.6vw,38px);">Comunidad y compromiso</h2>
+    <div class="gallery">
+      <a class="tall" href="img/group1.jpg" target="_blank"><img src="img/group1.jpg" alt="Voluntariado de la Fundación"></a>
+      <a href="img/group2.jpg" target="_blank"><img src="img/group2.jpg" alt="Equipo de la Fundación Hipólito Chaiña"></a>
+      <a href="img/despistaje.jpg" target="_blank"><img src="img/despistaje.jpg" alt="Jornada médica"></a>
+      <a href="img/mountain.jpg" target="_blank"><img src="img/mountain.jpg" alt="Arequipa, ciudad de la fundación"></a>
+    </div>
+  </div>
+</section>
+
+<section id="contacto" class="pad">
+  <div class="wrap">
+    <div class="contact-block" style="max-width:640px;">
+      <div class="eyebrow" style="color:var(--vino);">Contáctanos</div>
+      <h2>Súmate a nuestra labor solidaria en Arequipa.</h2>
+      <p class="body-copy">Fundación Hipólito Chaiña — Fundación Médica Solidaria, Arequipa, Perú.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 Fundación Hipólito Chaiña</span>
+    <span>Salud preventiva · Arequipa, Perú</span>
+  </div>
+</footer>
+
+</body>
+</html>
