@@ -323,7 +323,7 @@
     }
     .hero-bg{
       position:relative; inset:auto;
-      width:100%; aspect-ratio:2700/1224;
+      width:100%; aspect-ratio:2184/1223;
       background-size:cover; background-position:center;
     }
     .hero-bg::after{content:none;}
@@ -444,4 +444,118 @@
     </div>
     <div style="border-top:2px solid var(--vino); padding-top:22px;">
       <div class="eyebrow" style="color:var(--vino);">Visión</div>
-      <p class="body-copy" style="margin-top:16px;">Ser una fundación
+      <p class="body-copy" style="margin-top:16px;">Ser una fundación referente en salud solidaria y preventiva en la región Arequipa, reconocida por su impacto social, justicia social y empoderamiento de comunidades vulnerables mediante el acceso equitativo a la atención médica.</p>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <div class="values">
+      <div class="value-card"><div class="n">01</div><h4>Honestidad</h4></div>
+      <div class="value-card"><div class="n">02</div><h4>Compromiso</h4></div>
+      <div class="value-card"><div class="n">03</div><h4>Respeto</h4></div>
+      <div class="value-card"><div class="n">04</div><h4>Promoción de la Salud</h4></div>
+    </div>
+  </div>
+</section>
+
+<section id="ejes" class="dark pad">
+  <div class="wrap">
+    <div class="eyebrow" style="color:var(--oro);">Ejes de acción</div>
+    <h2 style="margin-top:20px; font-size:clamp(28px,4vw,42px); max-width:20ch;">Tres frentes, un mismo propósito.</h2>
+    <div class="axes">
+      <div class="axis">
+        <div class="eyebrow">Salud Preventiva</div>
+        <h4>Detección temprana</h4>
+        <p>Desarrollamos campañas médicas orientadas a la detección temprana de enfermedades, educación en hábitos saludables y prevención de riesgos, priorizando zonas con limitado acceso a servicios de salud.</p>
+      </div>
+      <div class="axis">
+        <div class="eyebrow">Atención Médica Solidaria</div>
+        <h4>Jornadas gratuitas</h4>
+        <p>Realizamos jornadas de atención gratuita que incluyen consultas médicas, despistajes, orientación y derivaciones oportunas.</p>
+      </div>
+      <div class="axis">
+        <div class="eyebrow">Educación y Sensibilización</div>
+        <h4>Comunidad informada</h4>
+        <p>Promovemos charlas, talleres y actividades educativas sobre prevención, autocuidado y salud comunitaria.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="eventos" class="pad">
+  <div class="wrap events-wrap">
+    <div>
+      <div class="eyebrow" style="color:var(--vino);">Principales eventos</div>
+      <h2 style="margin-top:20px; font-size:clamp(28px,3.6vw,38px);">Salud preventiva en acción</h2>
+      <ul class="event-list">
+        <li>Campañas de despistaje de enfermedades crónicas.</li>
+        <li>Jornadas de atención médica integral en comunidades vulnerables.</li>
+        <li>Actividades de prevención y promoción de la salud infantil.</li>
+        <li>Acciones médicas solidarias en zonas rurales y urbano-marginales.</li>
+      </ul>
+    </div>
+    <div class="events-photo">
+      <img src="img/despistaje.jpg" alt="Jornada de despistaje de la Fundación Hipólito Chaiña">
+    </div>
+  </div>
+</section>
+
+<div class="wave" style="background:var(--vino); transform:rotate(180deg);">
+  <svg viewBox="0 0 1200 80" preserveAspectRatio="none"><path d="M0,40 C 200,90 400,0 600,30 C 800,60 1000,10 1200,40 L1200,80 L0,80 Z" fill="#F4EFE4"/></svg>
+</div>
+
+<section class="impact">
+  <div class="wrap">
+    <div class="eyebrow">Impacto social</div>
+    <blockquote>“Nuestro trabajo ha beneficiado a cientos de familias, fortaleciendo la cultura de la prevención, mejorando el acceso a servicios médicos y contribuyendo a una sociedad más justa y saludable en Arequipa.”</blockquote>
+  </div>
+</section>
+
+<section class="dark pad">
+  <div class="wrap">
+    <div class="eyebrow" style="color:var(--oro);">Galería</div>
+    <h2 style="margin-top:20px; font-size:clamp(28px,3.6vw,38px);">Comunidad y compromiso</h2>
+    <div class="gallery">
+      <a class="tall" href="img/group1.jpg" target="_blank"><img src="img/group1.jpg" alt="Voluntariado de la Fundación"></a>
+      <a href="img/group2.jpg" target="_blank"><img src="img/group2.jpg" alt="Equipo de la Fundación Hipólito Chaiña"></a>
+      <a href="img/despistaje.jpg" target="_blank"><img src="img/despistaje.jpg" alt="Jornada médica"></a>
+      <a href="img/hero-bg.jpg" target="_blank"><img src="img/hero-bg.jpg" alt="Arequipa, ciudad de la fundación"></a>
+    </div>
+  </div>
+</section>
+
+<section id="contacto" class="pad">
+  <div class="wrap">
+    <div class="contact-block" style="max-width:640px;">
+      <div class="eyebrow" style="color:var(--vino);">Contáctanos</div>
+      <h2>Súmate a nuestra labor solidaria en Arequipa.</h2>
+      <p class="body-copy">Fundación Hipólito Chaiña — Fundación Médica Solidaria, Arequipa, Perú.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 Fundación Hipólito Chaiña</span>
+    <span>Salud preventiva · Arequipa, Perú</span>
+  </div>
+</footer>
+
+<script>
+  const navtoggle = document.getElementById('navtoggle');
+  const navlinks = document.getElementById('navlinks');
+  navtoggle.addEventListener('click', () => {
+    const isOpen = navlinks.classList.toggle('open');
+    navtoggle.classList.toggle('open', isOpen);
+    navtoggle.setAttribute('aria-expanded', isOpen);
+  });
+  navlinks.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      navlinks.classList.remove('open');
+      navtoggle.classList.remove('open');
+      navtoggle.setAttribute('aria-expanded', 'false');
+    });
+  });
+</script>
+</body>
+</html>
